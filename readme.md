@@ -72,6 +72,13 @@ To see the versions of all the Qiskit elements in your environment you can use t
 
 For a detailed instruction note refer: https://qiskit.org/documentation/install.html
 
+# Installing the Qiskit Textbook Package
+
+The Qiskit Textbook provides some tools and widgets specific to the Textbook. This is not part of Qiskit and is available through the `qiskit_textbook package`.
+
+Installing with git
+
+`pip install git+https://github.com/qiskit-community/qiskit-textbook.git#subdirectory=qiskit-textbook-src`
 # Quantum Basics
 
 If you wish to know the fundamental concepts and basics things like quantum physics,linear algebra, quantum gates, etc. you can use this book. This book will guide you and explain all the fundamentals concepts you need to know to understand quantum computers and qiskit.
@@ -83,3 +90,5 @@ https://delapuente.github.io/qiskit-textbook/preface
 https://en.wikipedia.org/wiki/Qiskit
 
 https://qiskit.org/documentation/index.html
+
+https://qiskit.org/textbook/preface.html
