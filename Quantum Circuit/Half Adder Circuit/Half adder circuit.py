@@ -1,30 +1,30 @@
-from qiskit import QuantumCircuit, assemble, Aer
+from qiskit import QuantumCircuit, assemble, Aer, execute
 from qiskit.visualization import plot_histogram
 
 # To add 1 and 1
 
 #Intialize 4 qubits and 2 bits
-a = QuantumCircuit(4, 2)
+circ = QuantumCircuit(4, 2)
 #Applying X gate on 1st and 2nd qubit
-a.x(0)
-a.x(1)
+circ.x(0)
+circ.x(1)
 #Putting a barrier
-a.barrier()
+circ.barrier()
 #Applying cnot gate from qubit 1 to 3 and from qubit 2 to 3
-a.cx(0,2)
-a.cx(1,2)
+circ.cx(0,2)
+circ.cx(1,2)
 #Applying toffoli gate
-a.ccx(0,1,3)
-a.barrier()
-a.measure(2,0) #Extract XOR value
-a.measure(3,1) #Extract AND value
-a.draw()
+circ.ccx(0,1,3)
+circ.barrier()
+circ.measure(2,0) #Extract XOR value
+circ.measure(3,1) #Extract AND value
+circ.draw()
 
 #Running on a simulator
 sim = Aer.get_backend('qasm_simulator')
-obj = assemble(a)
-result = sim.run(obj).result()
-counts = result.get_counts()
+job = execute(circ, sim, shots = 1000)
+result = job.result()
+counts = result.get_counts(circ)
 plot_histogram(counts)
 
 
@@ -39,9 +39,9 @@ a.measure(2,0)
 a.measure(3,1)
 a.draw()
 sim = Aer.get_backend('qasm_simulator')
-qobj = assemble(a)
-result = sim.run(qobj).result()
-counts = result.get_counts()
+job = execute(a, sim, shots = 1000)
+result = job.result()
+counts = result.get_counts(a)
 plot_histogram(counts)
 
 
@@ -57,9 +57,9 @@ b.measure(2,0)
 b.measure(3,1)
 b.draw()
 sim = Aer.get_backend('qasm_simulator')
-qobj = assemble(b)
-result = sim.run(qobj).result()
-counts = result.get_counts()
+job = execute(b, sim, shots = 1000)
+result = job.result()
+counts = result.get_counts(b)
 plot_histogram(counts)
 
 
@@ -75,8 +75,8 @@ c.measure(2,0)
 c.measure(3,1)
 c.draw()
 sim = Aer.get_backend('qasm_simulator')
-qobj = assemble(c)
-result = sim.run(qobj).result()
-counts = result.get_counts()
+job = execute(c, sim, shots = 1000)
+result = job.result()
+counts = result.get_counts(c)
 plot_histogram(counts)
 
